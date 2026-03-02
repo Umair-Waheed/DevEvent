@@ -1,0 +1,4 @@
+software used-> 
+mongodb
+posthog (for see user behaviour analytics)
+wrap (Ai Agent help in code)
