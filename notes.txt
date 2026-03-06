@@ -2,10 +2,3 @@ software used->
 mongodb
 posthog (for see user behaviour analytics)
 wrap (Ai Agent help in code)
-on wrap first we push over project on github then we create new branch using "git checkout -b "branch name""
-then made some change in this new branch after that we make one functionlaiyt like database connect or creaing
-schma and model then we push it on github then open github merge this request change to main branch then we come back 
-and using git checkout main for going to main branch then we use git pull to get all updated code back then we create new 
-branch then use similar step agin and again to create multiple branch.
-
-For cache-> first add cacheComponents:true in nextjs config
