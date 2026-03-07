@@ -1,9 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-<<<<<<< HEAD
-=======
   typescript: {
     ignoreBuildErrors:true,
   },
@@ -17,7 +14,6 @@ const nextConfig: NextConfig = {
       }
     ]
   }
->>>>>>> api-routes
 };
 
 export default nextConfig;

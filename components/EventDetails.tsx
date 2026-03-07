@@ -34,8 +34,8 @@ const EventTags=({tags}:{tags:string[]})=>(
     </div>
 )
 const EventDetails =async ({params}:{params:Promise<{slug:string}>}) => {
-    // 'use cache'
-    // cacheLife('minutes');
+    'use cache'
+    cacheLife('minutes');
   const { slug } = await params;
   const response=await fetch(`${BASE_URL}/api/events/${slug}`);
   const {event:{_id,description,image,overview,date,time,location,mode,agenda,audience,tags,organizer}}=await response.json();
