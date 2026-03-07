@@ -2,6 +2,7 @@ import { Schema, model, models, type Document, type Model, type Types } from "mo
 
 export interface IBooking extends Document {
   eventId: Types.ObjectId;
+  slug: string;
   email: string;
   createdAt: Date;
   updatedAt: Date;
@@ -15,6 +16,9 @@ const BookingSchema = new Schema<IBooking>(
       type: Schema.Types.ObjectId,
       ref: "Event",
       required: true,
+    },
+    slug: {
+      type: String,
     },
     email: {
       type: String,

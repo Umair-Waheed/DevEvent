@@ -1,8 +1,21 @@
 import EventCard from '@/components/EventCard';
 import ExploreBtn from '@/components/ExploreBtn';
+<<<<<<< HEAD
 import {events} from '@/lib/constants';
 const page = () => {
      
+=======
+import { IEvent } from '@/database';
+// import {events} from '@/lib/constants';
+import {cacheLife } from "next/cache"
+const BASE_URL=process.env.NEXT_PUBLIC_BASE_URL;
+
+const page = async () => {
+  // 'use cache';
+  //   cacheLife('minutes')
+     const response =await fetch(`${BASE_URL}/api/events`);
+     const {events}=await response.json();
+>>>>>>> api-routes
   return (
     <div>
       <section>
