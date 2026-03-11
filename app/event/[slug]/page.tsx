@@ -1,14 +1,14 @@
 import { Suspense } from "react"
 import EventDetails from "@/components/EventDetails";
-const EventDetailsPage =async ({params}:{params:Promise<{slug:string}>}) => {
-   const slug=await params.then((p)=>p.slug);
-  //  console.log(params,slug);
+export const dynamic = "force-dynamic"
+
+const EventDetailsPage =async ({ params }: { params: { slug: string } }) => {
   return (
    <main>
-    <Suspense fallback={<div>Loading...</div>}>
-    <EventDetails params={params}/>
-    </Suspense>
-   </main>
+      <Suspense fallback={<div>Loading...</div>}>
+        <EventDetails slug={params.slug} />
+      </Suspense>
+    </main>
   )
 }
 

@@ -3,15 +3,15 @@ import ExploreBtn from '@/components/ExploreBtn';
 import { IEvent } from '@/database';
 import {cacheLife } from "next/cache"
 
-const BASE_URL=process.env.NEXT_PUBLIC_BASE_URL;
+const API_URL=process.env.NEXT_PUBLIC_API_URL;
 const page = async() => {
   'use cache';
   cacheLife('minutes')
   
-     const response =await fetch(`${BASE_URL}/api/events`);
+     const response =await fetch(`${API_URL}/api/events`);
     // console.log(response);
-    const {events}=await response.json();
-    // console.log(events);
+    const {text}=await response.text();
+    console.log(text);
     
   return (
     <div>
@@ -24,7 +24,7 @@ const page = async() => {
           <h3>Featured Events</h3>
 
           <ul className="events">
-            {events.map((event:IEvent)=>(
+            {events?.map((event:IEvent)=>(
               <li className="list-none" key={event.title}>
                 <EventCard {...event}/>
               </li>

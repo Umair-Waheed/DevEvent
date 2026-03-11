@@ -4,7 +4,7 @@ import { IEvent } from '@/database';
 import { getSimilarEventsBySlug } from '@/lib/actions/event.action';
 import { notFound } from 'next/navigation';
 import{cacheLife} from "next/cache"
-const BASE_URL=process.env.NEXT_PUBLIC_BASE_URL;
+const API_URL=process.env.NEXT_PUBLIC_API_URL;
 
 const EventDetailsItems=({icon,alt,label}:{icon:string,alt:string,label:string})=>(
     
@@ -33,15 +33,37 @@ const EventTags=({tags}:{tags:string[]})=>(
         ))}
     </div>
 )
-const EventDetails =async ({params}:{params:Promise<{slug:string}>}) => {
-    'use cache'
-    cacheLife('minutes');
-  const { slug } = await params;
-  const response=await fetch(`${BASE_URL}/api/events/${slug}`);
-  const {event:{_id,description,image,overview,date,time,location,mode,agenda,audience,tags,organizer}}=await response.json();
-  if(!description) return notFound();
-  let bookings=10;
-  const similarEvents:IEvent[]=await getSimilarEventsBySlug(slug);
+const EventDetails = async ({ slug }: { slug: string }) => {
+
+  'use cache'
+  cacheLife('minutes')
+
+  const response = await fetch(`${API_URL}/api/events/${slug}`, {
+    next: { revalidate: 60 }
+  })
+
+  const { event } = await response.json()
+
+  if (!event?.description) return notFound()
+
+  const {
+    _id,
+    description,
+    image,
+    overview,
+    date,
+    time,
+    location,
+    mode,
+    agenda,
+    audience,
+    tags,
+    organizer
+  } = event;
+
+  const similarEvents: IEvent[] = await getSimilarEventsBySlug(slug);
+
+  let bookings = 10;
   return (
     <section id="event">
         <div className="header">
