@@ -6,9 +6,9 @@ import {cacheLife } from "next/cache"
 const page = async() => {
   'use cache';
   cacheLife('minutes')
-  const API_URL=process.env.NEXT_PUBLIC_API_URL;
+  // const API_URL=process.env.NEXT_PUBLIC_API_URL;
   
-     const response =await fetch(`${API_URL}/api/events`);
+     const response =await fetch(`https://dev-eventss.vercel.app/api/events`);
     // console.log("repsonse han",response);
     const {events}=await response.json();
     // console.log("wvent hsn",events);
