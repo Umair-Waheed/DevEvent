@@ -4,7 +4,6 @@ import { IEvent } from '@/database';
 import { getSimilarEventsBySlug } from '@/lib/actions/event.action';
 import { notFound } from 'next/navigation';
 import{cacheLife} from "next/cache"
-const API_URL=process.env.NEXT_PUBLIC_API_URL;
 
 const EventDetailsItems=({icon,alt,label}:{icon:string,alt:string,label:string})=>(
     
@@ -37,6 +36,7 @@ const EventDetails = async ({ slug }: { slug: string }) => {
 
   'use cache'
   cacheLife('minutes')
+const API_URL=process.env.NEXT_PUBLIC_API_URL;
 
   const response = await fetch(`${API_URL}/api/events/${slug}`, {
     next: { revalidate: 60 }

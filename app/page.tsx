@@ -3,15 +3,15 @@ import ExploreBtn from '@/components/ExploreBtn';
 import { IEvent } from '@/database';
 import {cacheLife } from "next/cache"
 
-const API_URL=process.env.NEXT_PUBLIC_API_URL;
 const page = async() => {
   'use cache';
   cacheLife('minutes')
+  const API_URL=process.env.NEXT_PUBLIC_API_URL;
   
      const response =await fetch(`${API_URL}/api/events`);
-    // console.log(response);
-    const {text}=await response.text();
-    console.log(text);
+    // console.log("repsonse han",response);
+    const {events}=await response.json();
+    // console.log("wvent hsn",events);
     
   return (
     <div>
